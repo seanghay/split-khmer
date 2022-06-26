@@ -1,6 +1,6 @@
 {
   "name": "split-khmer",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Split Khmer (Cambodian) words",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
