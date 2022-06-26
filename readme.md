@@ -12,7 +12,7 @@ Split Khmer sentence into an array of words.
 npm i split-khmer
 ```
 
-## Usage ESM
+## Usage
 
 ```js
 
