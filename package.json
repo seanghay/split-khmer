@@ -13,10 +13,10 @@
     }
   },
   "scripts": {
-    "build": "tsup",
-    "build:dev": "tsup --watch",
-    "dev": "tsup --watch --onSuccess \"node ./dist/index.js\"",
-    "prepublishOnly": "tsup",
+    "build": "tsup --onSuccess \"cpy ./wasm/*.wasm ./dist/ --flat\"",
+    "build:dev": "tsup --onSuccess \"cpy ./wasm/*.wasm ./dist/ --flat\" --watch",
+    "dev": "tsup --watch --onSuccess \"cpy ./wasm/*.wasm ./dist/ --flat && node ./dist/index.js\"",
+    "prepublishOnly": "tsup --onSuccess \"cpy ./wasm/*.wasm ./dist/ --flat\"",
     "test": "vitest",
     "test:ci": "cross-env CI=true vitest --run",
     "create:release": "bumpp"
@@ -42,6 +42,7 @@
   "devDependencies": {
     "@types/node": "16",
     "bumpp": "^8.2.1",
+    "cpy-cli": "^4.1.0",
     "cross-env": "^7.0.3",
     "tsup": "^6.1.2",
     "typescript": "^4.7.4",
