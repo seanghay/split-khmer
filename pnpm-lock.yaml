@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@types/node': '16'
   bumpp: ^8.2.1
   cross-env: ^7.0.3
   tsup: ^6.1.2
@@ -8,6 +9,7 @@ specifiers:
   vitest: ^0.16.0
 
 devDependencies:
+  '@types/node': 16.11.41
   bumpp: 8.2.1
   cross-env: 7.0.3
   tsup: 6.1.2_typescript@4.7.4
@@ -55,6 +57,10 @@ packages:
 
   /@types/chai/4.3.1:
     resolution: {integrity: sha512-/zPMqDkzSZ8t3VtxOa4KPq7uzzW978M9Tvh+j7GHKuo6k6GTLxPJ4J5gE5cjfJ26pnXst0N5Hax8Sr0T2Mi9zQ==}
+    dev: true
+
+  /@types/node/16.11.41:
+    resolution: {integrity: sha512-mqoYK2TnVjdkGk8qXAVGc/x9nSaTpSrFaGFm43BUH3IdoBV0nta6hYaGmdOvIMlbHJbUEVen3gvwpwovAZKNdQ==}
     dev: true
 
   /@types/node/18.0.0:

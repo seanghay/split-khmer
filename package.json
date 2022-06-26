@@ -15,6 +15,7 @@
   "scripts": {
     "build": "tsup",
     "build:dev": "tsup --watch",
+    "dev": "tsup --watch --onSuccess \"node ./dist/index.js\"",
     "prepublishOnly": "tsup",
     "test": "vitest",
     "test:ci": "cross-env CI=true vitest --run",
@@ -39,6 +40,7 @@
     "cambodian"
   ],
   "devDependencies": {
+    "@types/node": "16",
     "bumpp": "^8.2.1",
     "cross-env": "^7.0.3",
     "tsup": "^6.1.2",
