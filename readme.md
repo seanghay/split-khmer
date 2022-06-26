@@ -1,3 +1,5 @@
+![split-khmer](https://user-images.githubusercontent.com/15277233/175805541-d59f7720-c24c-42d7-8e7c-5549e22b5ef9.png)
+
 # Split Khmer words
 
 Split Khmer sentence into an array of words.
