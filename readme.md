@@ -12,14 +12,22 @@ Split Khmer sentence into an array of words.
 npm i split-khmer
 ```
 
-## Usage
+## Usage ESM
 
 ```js
+
+// Node.js 16+ ESM
 import { split } from 'split-khmer'
 
-const slices = split('កូនខ្មែរអាចធ្វើបាន');
+// Browser Module
+import { split } from 'https://unpkg.com/split-khmer@latest/dist/index.mjs'
 
-console.log(slices);
+// CommonJS
+const { split } = require('split-khmer') 
+
+const values = split('កូនខ្មែរអាចធ្វើបាន');
+
+console.log(values);
 // [ 'កូន', 'ខ្មែរ', 'អាច', 'ធ្វើ', 'បាន' ]
 
 ```
