@@ -42,6 +42,10 @@ e.g. The distibuted url will be `https://unpkg.com/split-khmer@0.0.3/dist/break_
 
 Use this library as a polyfill: [intl-segmenter-polyfill](https://github.com/surferseo/intl-segmenter-polyfill)
 
+### Browser Supports
+
+https://caniuse.com/mdn-javascript_builtins_intl_segmenter_segment
+
 ## License 
 
 
