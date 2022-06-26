@@ -32,8 +32,15 @@ console.log(values);
 
 ```
 
+## ⚠️ Note
 
+`Intl.Segmenter` is available only in Node.js 16 and latest Chrome browser. You need to use a polyfill to make it available to older browsers.
+
+We provided a [**BreakIterator**](./wasm/break_iterator_km.wasm) binary for you in order to create a polyfill for Khmer language. The binary file will be in `./dist/break_iterator_km.wasm`. e.g. `https://unpkg.com/split-khmer@0.0.3/dist/break_iterator_km.wasm`
+
+Use this library as a polyfill: [intl-segmenter-polyfill](https://github.com/surferseo/intl-segmenter-polyfill)
 
 ## License 
+
 
 MIT
