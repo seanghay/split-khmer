@@ -1,56 +1,6 @@
+import MagicString from "magic-string";
+
 const ZWSP_CHAR = "\u200b";
-
-function delimiterSplit(input: string): string[] {
-  return input.split(ZWSP_CHAR);
-}
-
-function createReplacer(value: string) {
-  const slices = delimiterSplit(value);
-  const items = [];
-  for (const slice of slices) {
-    for (const segmentation of segment(slice)) {
-      items.push(segmentation.segment);
-    }
-  }
-  return joinToString(items);
-}
-
-export function processText(input: string) {
-  const khmerRegex = /[\u1780-\u17ff]+/gm;
-  let result: RegExpExecArray | null;
-
-  const matches = [];
-  while ((result = khmerRegex.exec(input))) {
-    if (!result) continue;
-    matches.push({
-      index: result.index,
-      value: result[0],
-    });
-  }
-
-  let text = input;
-  let offset = 0;
-
-  for (const match of matches) {
-    const start = match.index - offset;
-    const end = match.value.length + start;
-    const replacer = createReplacer(match.value);
-    text = text.slice(0, start) + replacer + text.slice(end, text.length);
-    offset += match.value.length - replacer.length;
-  }
-
-  return text;
-}
-
-export function split(input: string): string[] {
-  return processText(input).split(/[\u200b\s]/);
-}
-
-function segment(input: string) {
-  const segmenter = new Intl.Segmenter("km", { granularity: "word" });
-  const segments = segmenter.segment(input);
-  return Array.from(segments);
-}
 
 /**
  * Join a string with zero-width space.
@@ -81,4 +31,36 @@ export function normalize(input: string): string {
  */
 export function sanitize(input: string): string {
   return input.replace(/\u200b*/gm, "");
+}
+
+
+export function tokenize(input: string) {
+  const khmerRegex = /[\u1780-\u17ff]+/gm;
+  let result: RegExpExecArray | null;
+  const entities = [];
+  while ((result = khmerRegex.exec(input))) {
+    if (!result) continue;
+    const value = result[0];
+    entities.push({
+      start: result.index,
+      end: result.index + value.length,
+      value,
+    });
+  }
+  return entities;
+}
+
+export function split(input: string): string[] {
+  const text = sanitize(normalize(input));
+  const entities = tokenize(text);
+  const str = new MagicString(text);
+  const segmenter = new Intl.Segmenter("km", { granularity: "word" });
+  for (const entity of entities) {
+    const results = Array.from(segmenter.segment(entity.value)).map(
+      (it) => it.segment
+    );
+    const joined = results.join(ZWSP_CHAR);
+    str.overwrite(entity.start, entity.end, joined);
+  }
+  return str.toString().split(ZWSP_CHAR);
 }
