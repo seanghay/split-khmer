@@ -6,6 +6,7 @@ describe("segment", () => {
 
   it('should ignore unknown chars', () => {
     expect(split('ខ្មែរខ្មែរ ABC ខ្មែរ')).toEqual(['ខ្មែរ', 'ខ្មែរ ABC ខ្មែរ'])
+    expect(split('កូនខ្មែរអាចធ្វើបាន')).toEqual([ 'កូនខ្មែរ', 'អាច', 'ធ្វើ', 'បាន' ])
   });
   
   it("should remove all zwsp from a string", () => {
